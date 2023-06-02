@@ -8,18 +8,18 @@ namespace fauna_db_api.Repositories;
 
 public class FaunaCarRepository : IRepository<Car>
 {
-    private readonly FaunaClient _faunaClient;
+    private readonly IFaunaClientService _faunaClientService;
 
-    public FaunaCarRepository(FaunaClientFactory faunaClientFactory)
+    public FaunaCarRepository(IFaunaClientService faunaClientService)
     {
-        _faunaClient = faunaClientFactory.CreateClient();
+        _faunaClientService = faunaClientService;
     }
 
     public async Task<Car> Add(Car car)
     {
         try
         {
-            Value result = await _faunaClient.Query(
+            Value result = await _faunaClientService.Query(
                 Create(
                     Collection("Cars"),
                     Obj("data",

@@ -12,7 +12,7 @@ using fauna_db_api.FaunaDB;
 
 namespace fauna_db_api.Controllers;
 
-[Authorize]
+//[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class FaunaController : ControllerBase
@@ -43,6 +43,7 @@ public class FaunaController : ControllerBase
     {
         try
         {
+            car.Id = 1;
             Car result = await _carRepository.Add(car);
             Console.WriteLine(result.ToString());
 

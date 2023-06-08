@@ -17,7 +17,7 @@ public class FaunaCarRepositoryTests
         // Arrange
         var mockFaunaClientService = new Mock<IFaunaClientService>();
         var repository = new FaunaCarRepository(mockFaunaClientService.Object);
-        var car = new Car(1, "Test Brand", "Test Model");
+        var car = new Car(1, "Test Brand", "Test Model", 2000, 10);
 
         // Set up the mock IFaunaClientService to return a Value object when Query is called
         mockFaunaClientService

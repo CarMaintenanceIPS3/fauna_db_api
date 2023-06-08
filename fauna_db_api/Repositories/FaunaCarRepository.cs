@@ -26,7 +26,9 @@ public class FaunaCarRepository : IRepository<Car>
                         Obj(
                             "id", $"{car.Id}",
                             "brand", $"{car.Brand}",
-                            "model", $"{car.Model}"
+                            "model", $"{car.Model}",
+                            "year", $"{car.Year}",
+                            "kilometers", $"{car.Kilometers}"
                             )
                     )
                     )
@@ -38,9 +40,11 @@ public class FaunaCarRepository : IRepository<Car>
             int id = data.At("id").To<int>().Value;
             string brand = data.At("brand").To<string>().Value;
             string model = data.At("model").To<string>().Value;
+            int year = data.At("year").To<int>().Value;
+            int kilometers = data.At("kilometers").To<int>().Value;
 
             // Create a new Car object
-            Car createdCar = new Car(id, brand, model);
+            Car createdCar = new Car(id, brand, model, year, kilometers);
 
             return createdCar;
         }

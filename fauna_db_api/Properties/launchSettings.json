@@ -5,7 +5,8 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "fauna_db_api": "fnAFF8SDa9AAzFrzskyC9ODGyFqH_ALi7hxQGtAc"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5296"
@@ -15,7 +16,8 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "fauna_db_api": "fnAFF8SDa9AAzFrzskyC9ODGyFqH_ALi7hxQGtAc"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7000;http://localhost:5296"
@@ -32,6 +34,9 @@
       "commandName": "Docker",
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "environmentVariables": {
+        "fauna_db_api": "fnAFF8SDa9AAzFrzskyC9ODGyFqH_ALi7hxQGtAc"
+      },
       "publishAllPorts": true,
       "useSSL": true
     }

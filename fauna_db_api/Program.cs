@@ -39,8 +39,11 @@ builder.Services.AddAuthentication(options =>
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(options =>
 {
-    options.Authority = $"https://{builder.Configuration["Auth0:Domain"]}";
+    Console.WriteLine("Configuring JWT Bearer options");
+    options.Authority = builder.Configuration["AUTH0_ISSUER_BASE_URL"];
     options.Audience = builder.Configuration["Auth0:Audience"];
+    Console.WriteLine($"Authority: {options.Authority}");
+    Console.WriteLine($"Audience: {options.Audience}");
 });
 
 
@@ -101,5 +104,5 @@ app.UseAuthorization();
 app.UseCors("AllowAllOrigins");
 
 app.MapControllers();
-
+Console.WriteLine("API started");
 app.Run();

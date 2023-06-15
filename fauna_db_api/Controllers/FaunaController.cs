@@ -12,7 +12,7 @@ using fauna_db_api.FaunaDB;
 
 namespace fauna_db_api.Controllers;
 
-//[Authorize]
+[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class FaunaController : ControllerBase
@@ -41,6 +41,7 @@ public class FaunaController : ControllerBase
     [HttpPost("CreateCar")]
     public async Task<ActionResult<Car>> CreateCar([FromBody] Car car)
     {
+        Console.WriteLine("Hello World");
         try
         {
             car.Id = 1;

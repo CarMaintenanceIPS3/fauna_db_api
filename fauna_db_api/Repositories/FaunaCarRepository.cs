@@ -44,7 +44,7 @@ public class FaunaCarRepository : IRepository<Car>
             int kilometers = data.At("kilometers").To<int>().Value;
 
             // Create a new Car object
-            Car createdCar = new(brand, model, year, kilometers);
+            Car createdCar = new(brand, model, year, kilometers) { Id = id };
 
             return createdCar;
         }

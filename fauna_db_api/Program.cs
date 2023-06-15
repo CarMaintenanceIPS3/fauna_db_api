@@ -46,7 +46,7 @@ builder.Services.AddAuthentication(options =>
 var faunaDBSettings = builder.Configuration.GetSection("FaunaDB").Get<FaunaDBSettings>();
 if (faunaDBSettings == null)
 {
-    throw new Exception("The 'FaunaDB' configuration section is missing or invalid.");
+    throw new InvalidOperationException("The 'FaunaDB' configuration section is missing or invalid.");
 }
 faunaDBSettings.Secret = builder.Configuration["fauna_db_api"] ?? throw new Exception("The configuration key 'fauna_db_api' does not exist or is empty.");
 builder.Services.AddSingleton(faunaDBSettings);

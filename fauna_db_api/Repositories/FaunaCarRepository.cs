@@ -8,25 +8,27 @@ namespace fauna_db_api.Repositories;
 
 public class FaunaCarRepository : IRepository<Car>
 {
-    private readonly FaunaClient _faunaClient;
+    private readonly IFaunaClientService _faunaClientService;
 
-    public FaunaCarRepository(FaunaClientFactory faunaClientFactory)
+    public FaunaCarRepository(IFaunaClientService faunaClientService)
     {
-        _faunaClient = faunaClientFactory.CreateClient();
+        _faunaClientService = faunaClientService;
     }
 
     public async Task<Car> Add(Car car)
     {
         try
         {
-            Value result = await _faunaClient.Query(
+            Value result = await _faunaClientService.Query(
                 Create(
                     Collection("Cars"),
                     Obj("data",
                         Obj(
                             "id", $"{car.Id}",
                             "brand", $"{car.Brand}",
-                            "model", $"{car.Model}"
+                            "model", $"{car.Model}",
+                            "year", $"{car.Year}",
+                            "kilometers", $"{car.Kilometers}"
                             )
                     )
                     )
@@ -35,12 +37,14 @@ public class FaunaCarRepository : IRepository<Car>
             var data = result.At("data");
 
             // Extract the fields from the data
-            int id = data.At("id").To<int>().Value;
+            string id = data.At("id").To<string>().Value;
             string brand = data.At("brand").To<string>().Value;
             string model = data.At("model").To<string>().Value;
+            int year = data.At("year").To<int>().Value;
+            int kilometers = data.At("kilometers").To<int>().Value;
 
             // Create a new Car object
-            Car createdCar = new Car(id, brand, model);
+            Car createdCar = new(brand, model, year, kilometers) { Id = id };
 
             return createdCar;
         }

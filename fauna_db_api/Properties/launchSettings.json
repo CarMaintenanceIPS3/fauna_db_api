@@ -5,7 +5,10 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "fauna_db_api": "fnAFF8SDa9AAzFrzskyC9ODGyFqH_ALi7hxQGtAc",
+        "AUTH0_ISSUER_BASE_URL": "https://dev-jmdtw3b5y1usoxa1.eu.auth0.com",
+        "Auth0:Audience": "https://localhost/carmaintenance"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5296"
@@ -15,7 +18,10 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "fauna_db_api": "fnAFF8SDa9AAzFrzskyC9ODGyFqH_ALi7hxQGtAc",
+        "AUTH0_ISSUER_BASE_URL": "https://dev-jmdtw3b5y1usoxa1.eu.auth0.com",
+        "Auth0:Audience": "https://localhost/carmaintenance"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7000;http://localhost:5296"
@@ -32,6 +38,11 @@
       "commandName": "Docker",
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "environmentVariables": {
+        "fauna_db_api": "fnAFF8SDa9AAzFrzskyC9ODGyFqH_ALi7hxQGtAc",
+        "AUTH0_ISSUER_BASE_URL": "https://dev-jmdtw3b5y1usoxa1.eu.auth0.com",
+        "Auth0:Audience": "https://localhost/carmaintenance"
+      },
       "publishAllPorts": true,
       "useSSL": true
     }

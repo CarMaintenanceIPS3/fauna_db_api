@@ -1,29 +1,20 @@
-﻿using System.Threading.Tasks;
-using FaunaDB.Client;
-using FaunaDB.Types;
-using Microsoft.AspNetCore.Mvc;
-using FaunaDB.Query;
-
-using static FaunaDB.Query.Language;
+﻿using Microsoft.AspNetCore.Mvc;
 using fauna_db_api.Models;
 using Microsoft.AspNetCore.Authorization;
 using fauna_db_api.Repositories;
-using fauna_db_api.FaunaDB;
 
 namespace fauna_db_api.Controllers;
 
-[Authorize]
+//[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class FaunaController : ControllerBase
 {
-    private readonly FaunaClient _faunaClient;
     private readonly IRepository<Car> _carRepository;
     private readonly IRepository<User> _userRepository;
 
-    public FaunaController(FaunaClientFactory faunaClientFactory, IRepository<Car> carRepository, IRepository<User> userRepository)
+    public FaunaController(IRepository<Car> carRepository, IRepository<User> userRepository)
     {
-        _faunaClient = faunaClientFactory.CreateClient();
         _carRepository = carRepository;
         _userRepository = userRepository;
     }
@@ -41,10 +32,8 @@ public class FaunaController : ControllerBase
     [HttpPost("CreateCar")]
     public async Task<ActionResult<Car>> CreateCar([FromBody] Car car)
     {
-        Console.WriteLine("Hello World");
         try
         {
-            car.Id = 1;
             Car result = await _carRepository.Add(car);
             Console.WriteLine(result.ToString());
 

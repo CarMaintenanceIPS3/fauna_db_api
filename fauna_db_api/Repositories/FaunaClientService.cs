@@ -14,8 +14,5 @@ public class FaunaClientService : IFaunaClientService
         _faunaClient = faunaClientFactory.CreateClient();
     }
 
-    public Task<Value> Query(Expr expression)
-    {
-        return _faunaClient.Query(expression);
-    }
+    public Task<Value> Query(Expr expression) => _faunaClient.Query(expression);
 }

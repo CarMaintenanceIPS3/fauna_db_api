@@ -1,9 +1,4 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Security.Claims;
-using System.Text;
-
-//using database_api.FaunaDB;
 using Microsoft.OpenApi.Models;
 using fauna_db_api.FaunaDB;
 using fauna_db_api.Models;
@@ -49,7 +44,11 @@ builder.Services.AddAuthentication(options =>
 
 //FaunaDB
 var faunaDBSettings = builder.Configuration.GetSection("FaunaDB").Get<FaunaDBSettings>();
-faunaDBSettings.Secret = builder.Configuration["fauna_db_api"];
+if (faunaDBSettings == null)
+{
+    throw new Exception("The 'FaunaDB' configuration section is missing or invalid.");
+}
+faunaDBSettings.Secret = builder.Configuration["fauna_db_api"] ?? throw new Exception("The configuration key 'fauna_db_api' does not exist or is empty.");
 builder.Services.AddSingleton(faunaDBSettings);
 builder.Services.AddSingleton<FaunaClientFactory>();
 
@@ -79,7 +78,7 @@ builder.Services.AddSwaggerGen(c =>
                     Id = "oauth2"
                 }
             },
-            new string[] {}
+            Array.Empty<string>()
         }
     });
 });
@@ -104,5 +103,5 @@ app.UseAuthorization();
 app.UseCors("AllowAllOrigins");
 
 app.MapControllers();
-Console.WriteLine("API started");
+
 app.Run();

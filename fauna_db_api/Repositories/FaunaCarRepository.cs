@@ -37,14 +37,14 @@ public class FaunaCarRepository : IRepository<Car>
             var data = result.At("data");
 
             // Extract the fields from the data
-            int id = data.At("id").To<int>().Value;
+            string id = data.At("id").To<string>().Value;
             string brand = data.At("brand").To<string>().Value;
             string model = data.At("model").To<string>().Value;
             int year = data.At("year").To<int>().Value;
             int kilometers = data.At("kilometers").To<int>().Value;
 
             // Create a new Car object
-            Car createdCar = new Car(id, brand, model, year, kilometers);
+            Car createdCar = new(brand, model, year, kilometers);
 
             return createdCar;
         }
